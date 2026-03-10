@@ -1,0 +1,32 @@
+name: quant-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - conda-forge::sentencepiece
+  - conda-forge::tqdm
+  - conda-forge::ipywidgets
+  - conda-forge::jupyter
+  - conda-forge::pandas
+  - conda-forge::scikit-learn
+  - pip:
+      # Torch 2.6+ with CUDA 12.4 support
+      # --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch>=2.6.0
+      - torchvision
+      - torchaudio
+      
+      # HF Stack
+      - transformers==4.33.3
+      - accelerate
+      - datasets
+      - safetensors
+      
+      # Quantization & Eval
+      - auto-gptq==0.4.2
+      - autoawq
+      - lm-eval
+      - peft<=0.6.0
+      - wandb

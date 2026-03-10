@@ -1,0 +1,20 @@
+# Use it for RTNQ and AWQ
+name: awq-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - conda-forge::sentencepiece
+  - conda-forge::tqdm
+  - conda-forge::ipywidgets
+  - pip:
+      # --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch>=2.6.0
+      - transformers>=4.45.0  # Fixes the BaseImageProcessor error
+      - accelerate
+      - auto-gptq
+      - autoawq
+      - datasets
+      - safetensors
