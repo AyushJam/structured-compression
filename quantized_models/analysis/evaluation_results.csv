@@ -1,0 +1,6 @@
+model_name,bits,perplexity,loss,params_billions,weight_memory_gb,total_memory_gb,bandwidth_gb_per_token,error
+baseline_fp16,16,14.894217844229692,2.700973073489379,6.738415616,12.551277160644531,13.051277160644531,12.551277160644531,
+rtn_w8,8,14.895993540680413,2.7010922869068255,6.738415616,6.275638580322266,6.775638580322266,6.275638580322266,
+rtn_w4,4,15.937365845276219,2.768666405331921,6.738415616,3.137819290161133,3.637819290161133,3.137819290161133,
+gptq_w4,4,,,,,,,cannot import name 'no_init_weights' from 'transformers.modeling_utils' (/mnt/miniconda3/envs/awq-env/lib/python3.10/site-packages/transformers/modeling_utils.py)
+awq_w4,4,,,,,,,'LlamaAWQForCausalLM' object has no attribute 'device'

@@ -1,0 +1,46 @@
+{
+  "model_name": "baseline_fp16",
+  "model_path": "quantized_models/baseline_fp16",
+  "bits": 16,
+  "total_params": 6738415616,
+  "total_params_millions": 6738.415616,
+  "total_params_billions": 6.738415616,
+  "weight_memory_mb": 12852.5078125,
+  "weight_memory_gb": 12.551277160644531,
+  "activation_memory_mb": 512.0,
+  "total_memory_mb": 13364.5078125,
+  "total_memory_gb": 13.051277160644531,
+  "bandwidth_mb_per_token": 12852.5078125,
+  "bandwidth_gb_per_token": 12.551277160644531,
+  "perplexity": 14.894217844229692,
+  "loss": 2.700973073489379,
+  "total_tokens": 5487,
+  "lm_eval": {
+    "results": {
+      "hellaswag": {
+        "alias": "hellaswag",
+        "acc,none": 0.4,
+        "acc_stderr,none": 0.11239029738980327,
+        "acc_norm,none": 0.55,
+        "acc_norm_stderr,none": 0.11413288653790232
+      },
+      "piqa": {
+        "alias": "piqa",
+        "acc,none": 0.9,
+        "acc_stderr,none": 0.06882472016116853,
+        "acc_norm,none": 0.8,
+        "acc_norm_stderr,none": 0.09176629354822471
+      },
+      "mmlu_stem": {
+        "acc,none": 0.29736842105263156,
+        "acc_stderr,none": 0.02338998530872523,
+        "alias": "stem"
+      },
+      "mmlu_humanities": {
+        "acc,none": 0.27692307692307694,
+        "acc_stderr,none": 0.027735009811261452,
+        "alias": "humanities"
+      }
+    }
+  }
+}

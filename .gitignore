@@ -1,5 +1,8 @@
 /.vscode
-/quantized_models
+/quantized_models/*/*.png
+/quantized_models/*/*.model
+/quantized_models/*/*.safetensors
+/quantized_models/*/tokenizer*.*
 /__pycache__
 *.pyc
 *.pkl

@@ -1,0 +1,46 @@
+{
+  "model_name": "awq_w4",
+  "model_path": "quantized_models/awq_w4",
+  "bits": 4,
+  "total_params": 262410240,
+  "total_params_millions": 262.41024,
+  "total_params_billions": 0.26241024,
+  "weight_memory_mb": 125.126953125,
+  "weight_memory_gb": 0.12219429016113281,
+  "activation_memory_mb": 512.0,
+  "total_memory_mb": 637.126953125,
+  "total_memory_gb": 0.6221942901611328,
+  "bandwidth_mb_per_token": 125.126953125,
+  "bandwidth_gb_per_token": 0.12219429016113281,
+  "perplexity": 15.073975836242134,
+  "loss": 2.71296980241098,
+  "total_tokens": 5487,
+  "lm_eval": {
+    "results": {
+      "hellaswag": {
+        "alias": "hellaswag",
+        "acc,none": 0.4,
+        "acc_stderr,none": 0.11239029738980327,
+        "acc_norm,none": 0.5,
+        "acc_norm_stderr,none": 0.11470786693528086
+      },
+      "piqa": {
+        "alias": "piqa",
+        "acc,none": 0.9,
+        "acc_stderr,none": 0.06882472016116853,
+        "acc_norm,none": 0.8,
+        "acc_norm_stderr,none": 0.09176629354822471
+      },
+      "mmlu_stem": {
+        "acc,none": 0.3263157894736842,
+        "acc_stderr,none": 0.0241641130446793,
+        "alias": "stem"
+      },
+      "mmlu_humanities": {
+        "acc,none": 0.28846153846153844,
+        "acc_stderr,none": 0.02822199225937344,
+        "alias": "humanities"
+      }
+    }
+  }
+}

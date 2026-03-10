@@ -1,0 +1,20 @@
+{
+  "baseline_fp16": {
+    "perplexity": 11.136744173589623,
+    "loss": 2.410249927292287
+  },
+  "mlp_only": {
+    "perplexity": 11.583058365710762,
+    "loss": 2.449543544848915,
+    "num_layers": 96
+  },
+  "attention_only": {
+    "perplexity": 11.372367662749813,
+    "loss": 2.431186523792849,
+    "num_layers": 128
+  },
+  "all_layers": {
+    "perplexity": 12.221327205095093,
+    "loss": 2.503182557100809
+  }
+}

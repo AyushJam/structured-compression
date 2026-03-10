@@ -1,0 +1,46 @@
+{
+  "model_name": "baseline_fp16",
+  "model_path": "openlm-research/open_llama_7b",
+  "bits": 16,
+  "total_params": 6738415616,
+  "total_params_millions": 6738.415616,
+  "total_params_billions": 6.738415616,
+  "weight_memory_mb": 12852.5078125,
+  "weight_memory_gb": 12.551277160644531,
+  "activation_memory_mb": 512.0,
+  "total_memory_mb": 13364.5078125,
+  "total_memory_gb": 13.051277160644531,
+  "bandwidth_mb_per_token": 12852.5078125,
+  "bandwidth_gb_per_token": 12.551277160644531,
+  "perplexity": 14.894217844229692,
+  "loss": 2.700973073489379,
+  "total_tokens": 5487,
+  "lm_eval": {
+    "results": {
+      "hellaswag": {
+        "alias": "hellaswag",
+        "acc,none": 0.6,
+        "acc_stderr,none": 0.24494897427831783,
+        "acc_norm,none": 0.6,
+        "acc_norm_stderr,none": 0.24494897427831783
+      },
+      "piqa": {
+        "alias": "piqa",
+        "acc,none": 0.8,
+        "acc_stderr,none": 0.20000000000000004,
+        "acc_norm,none": 0.8,
+        "acc_norm_stderr,none": 0.20000000000000004
+      },
+      "mmlu_stem": {
+        "acc,none": 0.30526315789473685,
+        "acc_stderr,none": 0.04993069989739546,
+        "alias": "stem"
+      },
+      "mmlu_humanities": {
+        "acc,none": 0.3076923076923077,
+        "acc_stderr,none": 0.0595843591724218,
+        "alias": "humanities"
+      }
+    }
+  }
+}
