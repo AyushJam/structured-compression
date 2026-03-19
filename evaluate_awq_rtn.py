@@ -22,7 +22,7 @@ import utils.eval_utils as eval_utils
 import utils.model_loader as model_loader
 
 
-OUTPUT_ROOT = Path("./quantized_models")
+OUTPUT_ROOT = model_loader.OUTPUT_ROOT
 PERPLEXITY_SAMPLES = 100
 MAX_LENGTH = 512
 
