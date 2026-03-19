@@ -272,3 +272,94 @@ def load_eval_results(path: Path) -> Optional[Dict[str, Any]]:
             return json.load(f)
     except Exception:
         return None
+
+
+def measure_inference_time(
+    model: torch.nn.Module,
+    tokenizer,
+    prompts: List[str],
+    num_new_tokens: int = 100,
+    batch_size: int = 1,
+    device: str = "cuda",
+    num_runs: int = 5,
+) -> Dict[str, Any]:
+    """Measure inference time and throughput for text generation.
+
+    Args:
+        model: The language model to evaluate.
+        tokenizer: The tokenizer instance.
+        prompts: List of input prompts for generation.
+        num_new_tokens: Number of new tokens to generate per prompt.
+        batch_size: Batch size (currently supports 1).
+        device: Device string, e.g. "cuda" or "cpu".
+        num_runs: Number of runs to average over for stability.
+
+    Returns:
+        Dict with average time per prompt, throughput, and generated responses.
+    """
+    if batch_size != 1:
+        raise NotImplementedError("Batch size > 1 not yet supported.")
+
+    model.eval()
+    model.to(device)
+
+    total_times = []
+    total_tokens_generated = 0
+    generated_responses = []
+
+    for prompt in prompts:
+        inputs = tokenizer(prompt, return_tensors="pt").to(device)
+
+        # Warm-up run
+        with torch.no_grad():
+            _ = model.generate(**inputs, max_new_tokens=10, do_sample=False)
+
+        times = []
+        response = None
+        for run in range(num_runs):
+            torch.cuda.empty_cache() if device == "cuda" else None
+
+            start_event = torch.cuda.Event(enable_timing=True) if device == "cuda" else None
+            end_event = torch.cuda.Event(enable_timing=True) if device == "cuda" else None
+
+            if device == "cuda":
+                start_event.record()
+            else:
+                import time
+                start_time = time.time()
+
+            with torch.no_grad():
+                outputs = model.generate(**inputs, max_new_tokens=num_new_tokens, do_sample=False)
+
+            if device == "cuda":
+                end_event.record()
+                torch.cuda.synchronize()
+                elapsed = start_event.elapsed_time(end_event) / 1000  # seconds
+            else:
+                elapsed = time.time() - start_time
+
+            times.append(elapsed)
+            total_tokens_generated += num_new_tokens
+
+            # Capture the generated text from the last run
+            if run == num_runs - 1:
+                generated_text = tokenizer.decode(outputs[0][len(inputs["input_ids"][0]):], skip_special_tokens=True)
+                response = generated_text.strip()
+
+        avg_time = sum(times) / len(times)
+        total_times.append(avg_time)
+        generated_responses.append(response)
+
+    overall_avg_time = sum(total_times) / len(total_times)
+    overall_throughput = total_tokens_generated / sum(total_times)  # tokens/sec across all runs
+
+    return {
+        "avg_time_per_prompt_sec": overall_avg_time,
+        "throughput_tokens_per_sec": overall_throughput,
+        "total_prompts": len(prompts),
+        "num_new_tokens": num_new_tokens,
+        "num_runs": num_runs,
+        "device": device,
+        "prompts": prompts,
+        "generated_responses": generated_responses,
+    }

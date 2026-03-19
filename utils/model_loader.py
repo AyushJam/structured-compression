@@ -7,8 +7,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 from pathlib import Path
 
-MODEL_ID = "openlm-research/open_llama_7b"  # Target model to quantize
-OUTPUT_ROOT = Path("./quantized_models")  # Directory for saving quantized models
+# MODEL_ID = "openlm-research/open_llama_7b"  # Target model to quantize
+# OUTPUT_ROOT = Path("./quantized_models")  # Directory for saving quantized models
+
+MODEL_ID = "openlm-research/open_llama_3b"  # Target model to quantize
+OUTPUT_ROOT = Path("./quantized_models_3b")  # Directory for saving quantized models
 
 
 def load_tokenizer(model_id: str = MODEL_ID):
